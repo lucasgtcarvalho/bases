@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> CONVERSOR DE BASES</title>	
+	<meta name="description" content="Conversor de bases.">
+    <meta name="keywords" content="binario,octal,decimal,hexadecimal">
+    <meta name="author" content="Lucas Carvalho">
+<style type="text/css">
+body{
+	margin:0;
+	font-family: Helvetica, Arial;
+  	
+  	height: auto; 	
+  	background-color: #87CEEB; 
+  	opacity: 50;
+
+  	max-width: 1200px;
+  	margin: 0 auto;
+  	width: 80%;
+}
+
+h1, h4{
+	margin: 0;
+	font-family: 'Amatic SC' ;
+}
+table{
+  width: 80%;
+  table-layout: fixed;
+  text-align: center;
+  padding: 10px;
+  margin-left: 10%;
+}
+#calculo{
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 80px;
+	text-align: center;
+}
+.botaoC {
+  margin-top: 20px;
+  margin-left: 30%;
+  float: left;
+  font-size: 15px;
+  border-radius: 4px;
+  color: #fff;
+  height: 30px;
+  opacity: .8;
+  cursor: pointer;
+  background: green;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #500707;
+  border-right: 1px solid #500707;
+  transition: 1s;
+}
+.botaoL {
+  margin-top: 20px;
+  margin-right: 30%;
+  float: right;
+  font-size: 15px;
+  border-radius: 4px;
+  color: #fff;
+  height: 30px;
+  opacity: .8;
+  cursor: pointer;
+  background: red;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #500707;
+  border-right: 1px solid #500707;
+  transition: 1s;
+}
+</style>
+</head>
+<body>
+	<div id="calculo">
+		<h1>Conversor de Bases</h1>
+    <br>
+		<br>
+    <br>
+    <br>
+    <h4>Informe o valor a ser convertido e seleciona o tipo de base.</h4>
+    <br>
+    <br>
+		<form>
+		<input type="text" name="numero" id="num">
+		<form>
+    <input type="RADIO" name="opcao" VALUE="bin" id="bin"> Binário
+    <input type="RADIO" name="opcao" VALUE="oct" id="oct"> Octal
+    <input type="RADIO" name="opcao" VALUE="dec" id="dec"> Decimal
+    <input type="RADIO" name="opcao" VALUE="hex" id="hex"> Hexadecimal
+    </form>
+    <br>
+    <br>
+		<table>
+      <tr>
+        <td>Binario</td>
+        <td>Octal</td>
+        <td>Decimal</td>
+        <td>Hexadecimal</td>
+      </tr>
+      <tr>
+        <td><input type="text" name="bin" id="binario"></td>
+        <td><input type="text" name="oct" id="octal"></td>
+        <td><input type="text" name="dec" id="decimal"></td>
+        <td><input type="text" name="hex" id="hexadecimal"></td>
+      </tr>
+    </table>
+    <button id="converter" class="botaoC">Converter</button>
+    <button id="limpar" class="botaoL">Limpar</button>
+		
+</form> 
+</div>
+	<script type="text/javascript">
+		
+    document.getElementById("converter").onclick = function () {
+		if(bin.checked){
+        document.getElementById('binario').value = document.getElementById('num').value;
+        binarioparadecimal();
+        binarioparaoctal();
+        binarioparahexadecimal();
+    
+    }else if(oct.checked){
+        octalparabinario();
+        document.getElementById('octal').value = document.getElementById('num').value;
+        octalparadecimal();
+        octalparahexadecimal();
+
+    }else if(dec.checked){
+        decimalparabinario();
+        decimalparaoctal();
+        document.getElementById('decimal').value = document.getElementById('num').value;
+        decimalparahexadecimal();
+         
+    }else if(hex.checked){
+        hexadecimalparabinario();
+        hexadecimalparaoctal();
+        hexadecimalparadecimal();
+        document.getElementById('hexadecimal').value = document.getElementById('num').value;
+
+    }else{
+      alert("Marque umas das opções!")
+    }
+}
+function binarioparaoctal(){
+  document.getElementById('octal').value = parseInt(document.getElementById('num').value,2).toString(8);
+}
+function binarioparadecimal(){
+  document.getElementById('decimal').value = parseInt(document.getElementById('num').value,2).toString(10);
+}
+function binarioparahexadecimal(){
+  document.getElementById('hexadecimal').value = parseInt(document.getElementById('num').value,2).toString(16);
+}
+function octalparabinario(){
+  document.getElementById('binario').value = parseInt(document.getElementById('num').value,8).toString(2);
+}
+function octalparadecimal(){
+  document.getElementById('decimal').value = parseInt(document.getElementById('num').value,8).toString(10);
+}
+function octalparahexadecimal(){
+  document.getElementById('hexadecimal').value = parseInt(document.getElementById('num').value,8).toString(16);
+}
+function decimalparabinario(){
+  document.getElementById('binario').value = parseInt(document.getElementById('num').value,10).toString(2);
+}
+function decimalparaoctal(){
+  document.getElementById('octal').value = parseInt(document.getElementById('num').value,10).toString(8);
+}
+function decimalparahexadecimal(){
+  document.getElementById('hexadecimal').value = parseInt(document.getElementById('num').value,10).toString(16);
+}
+function hexadecimalparabinario(){
+  document.getElementById('binario').value = parseInt(document.getElementById('num').value,16).toString(2);
+}	
+function hexadecimalparaoctal(){
+  document.getElementById('octal').value = parseInt(document.getElementById('num').value,16).toString(8);
+} 
+function hexadecimalparadecimal(){
+  document.getElementById('decimal').value = parseInt(document.getElementById('num').value,16).toString(10);
+} 
+var limpar = document.getElementById('limpar');
+    limpar.onclick = function limpar(){
+      document.getElementById('num').value = "";
+      document.getElementById('binario').value = "";
+      document.getElementById('octal').value = "";
+      document.getElementById('decimal').value = "";
+      document.getElementById('hexadecimal').value = "";
+    }
+	</script>
+</body>
+</html>
